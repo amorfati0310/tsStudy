@@ -1,9 +1,10 @@
 {
   "name": "tsStudy",
   "version": "1.0.0",
-  "description": "",
+  "description": "typeScript_Study_repo",
   "main": "index.js",
   "scripts": {
+    "transpile": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/amorfati0310/tsStudy#readme",
   "devDependencies": {
+    "tslint": "^5.10.0",
     "typescript": "^2.9.2"
   }
 }
