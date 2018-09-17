@@ -1,0 +1,21 @@
+{
+  "name": "tsStudy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node tsLotto/lotto.js",
+    "prestart": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amorfati0310/tsStudy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amorfati0310/tsStudy/issues"
+  },
+  "homepage": "https://github.com/amorfati0310/tsStudy#readme"
+}
