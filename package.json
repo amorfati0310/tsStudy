@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node tsLotto/lotto.js",
-    "prestart": "tsc"
+    "prestart": "tsc",
+    "sassLotto": "node-sass --output-style expanded ./tsLotto/style/sass --output ./tsLotto/style/css"
   },
   "repository": {
     "type": "git",
@@ -17,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/amorfati0310/tsStudy/issues"
   },
-  "homepage": "https://github.com/amorfati0310/tsStudy#readme"
+  "homepage": "https://github.com/amorfati0310/tsStudy#readme",
+  "dependencies": {
+    "node-sass": "^4.9.3"
+  }
 }
