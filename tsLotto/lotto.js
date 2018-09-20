@@ -1,10 +1,6 @@
 "use strict";
-// window:Window|null
-// declare Global {
-// }
-// window:Window
-(function () {
-    // const document = window.document
+(function (window) {
+    const document = window.document;
     const winningPrice = {
         3: 5000,
         4: 50000,
@@ -79,13 +75,12 @@
     lotto.buyLottery();
     console.log(lotto.checkWinningPrice(winningPrice));
     console.dir(lotto);
-    // document.addEventListener('DOMContentLoaded', ()=>{
-    //   const drawer__wrapper:Element|null = document.querySelector(".drawer__wrapper");
-    //   const hamburgerBtn:Element|null = document.querySelector(".hamburger");
-    //   hamburgerBtn&&hamburgerBtn.addEventListener("click", e => {
-    //     hamburgerBtn.classList.toggle("active");
-    //     drawer__wrapper&&drawer__wrapper.classList.toggle("active");
-    //   });
-    // })
-})();
-// window
+    document.addEventListener('DOMContentLoaded', () => {
+        const drawer__wrapper = document.querySelector(".drawer__wrapper");
+        const hamburgerBtn = document.querySelector(".hamburger");
+        hamburgerBtn && hamburgerBtn.addEventListener("click", e => {
+            hamburgerBtn.classList.toggle("active");
+            drawer__wrapper && drawer__wrapper.classList.toggle("active");
+        });
+    });
+})(window);
