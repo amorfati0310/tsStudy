@@ -34,6 +34,6 @@ class 기반은 interface implements로 넣기 용이
 
 ## TODO
 
-- [ ] todo객체 add/update/remove/read methods를 만든다.
-- [ ] add/ update /remove/read에 따라 model을 update하고 동작한다. 
+- [ O ] todo객체 add/update/remove/read methods를 만든다.
+- [O] add/ update /remove/read에 따라 model을 update하고 동작한다. 
 

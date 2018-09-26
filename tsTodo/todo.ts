@@ -1,5 +1,3 @@
-// todoO
-
 enum TodoStatus {
   done, 
   doing,
@@ -33,6 +31,7 @@ interface TodoUtils {
 
 class TodoO implements TodoUtils{
   private nextId = 1;
+  private stateCounter:todoStateCounter = {todo: 0, doing: 0, done:0}
   private todoList:Array<TodoItem> = []
   private todoItem:TodoItem = {name: '', tag: '', id: 1, status: TodoStatus.todo}
   add({name, tag}:{name: string, tag: string}){
@@ -41,8 +40,9 @@ class TodoO implements TodoUtils{
       name,
       tag,
     })   
-    this.printAddLog(this.nextId,name);
     this.nextId+=1;
+    this.stateCounter[TodoStatus[TodoStatus.todo]]+=1
+    this.printAddLog(this.nextId-1,name);
   }
   update({id, nextStatus}:{id: number, nextStatus: TodoStatus}){
    const updateOne:TodoItem|undefined =this.todoList.find(todoItem=>todoItem.id===id)
@@ -55,7 +55,8 @@ class TodoO implements TodoUtils{
     else{
       beforeStatus = updateOne.status
       updateOne.status = nextStatus
-    
+      this.stateCounter[TodoStatus[beforeStatus]]-=1;
+      this.stateCounter[TodoStatus[nextStatus]]+=1;
     } 
    }
     this.printUpdateLog(updateOne, isSame, beforeStatus)
@@ -64,7 +65,8 @@ class TodoO implements TodoUtils{
     const removeOne =this.findOne(id)
     if(removeOne){
       this.todoList = this.todoList.filter(todo=>todo.id!==id)
-      console.log(`id: ${id}, ${removeOne.name} 삭제 완료`)
+      this.stateCounter[TodoStatus[removeOne.status]]-=1;
+      this.printRemoveLog(id, removeOne.name)
     }
     else console.log(`해당 id를 찾을 수 없습니다`)
   }
@@ -73,6 +75,18 @@ class TodoO implements TodoUtils{
   }
   private printAddLog(id: number,name: string){
     console.log(`id: ${id} ,${name} 항목이 새롭게 추가 됐습니다`)
+    this.printStateLog();
+  }
+  private printRemoveLog(id: number,name: string){
+    console.log(`id: ${id} ,${name} 삭제 완료`)
+    this.printStateLog();
+  }
+  private printUpdatedLog(todoItem: TodoItem, beforeStatus: TodoStatus){
+    console.log(`id: ${todoItem.id} ,${todoItem.name} 항목이 ${TodoStatus[beforeStatus]}=>${TodoStatus[todoItem.status]}상태로 업데이트 됐습니다`)
+    this.printStateLog();
+  }
+  private printStateLog(){
+    console.log(`현재상태 :  todo:${this.stateCounter.todo}개, doing:${this.stateCounter.doing}개, done:${this.stateCounter.done}개 `)
   }
   private printUpdateLog(todoItem:TodoItem|undefined, isSame:boolean, beforeStatus:TodoStatus){
     if(todoItem){
@@ -80,7 +94,7 @@ class TodoO implements TodoUtils{
         console.log(`변경할 값이 기존 값으로 ${TodoStatus[beforeStatus]} 같습니다.`)
       }
       else {
-        console.log(`id: ${todoItem.id} ,${todoItem.name} 항목이 ${TodoStatus[beforeStatus]}=>${TodoStatus[todoItem.status]}상태로 업데이트 됐습니다`)
+       this.printUpdatedLog(todoItem,beforeStatus);
       }
     }
     else console.log('해당 id를 찾을 수 없습니다')
@@ -90,5 +104,7 @@ class TodoO implements TodoUtils{
 
 const todo = new TodoO();
 todo.add({name: "자바스크립트 공부하기", tag:"programming"})
+todo.add({name: "타입스크립트 공부하기", tag:"programming"})
+todo.add({name: "리액트 공부하기", tag:"programming"})
 todo.update({id: 1, nextStatus: TodoStatus.done})
 todo.remove({id: 1})
