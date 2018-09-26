@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node tsTodo/todo.js",
+    "start": "tsTodo/todo.js",
     "prestart": "tsc",
     "sassLotto": "node-sass --output-style expanded ./tsLotto/style/sass --output ./tsLotto/style/css"
   },
